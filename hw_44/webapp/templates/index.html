@@ -8,6 +8,7 @@
 <body>
     <p>Guess 4 numbers</p>
     <p>Enter 4 numbers below out of range 1 to 10:</p>
+    <p>Numbers should not be repeated</p>
     <form method="POST" action="/">
         {% csrf_token %}
         <ul>
@@ -27,5 +28,6 @@
 
         <input type="submit" value="Send"/>
     </form>
+    <div><a href="/history">View history</a> </div>
 </body>
 </html>

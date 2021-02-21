@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+history = {}
+number_of_round = 0
+
 
 def index_view(request):
     secret_nums = [5, 1, 2, 9]
@@ -26,8 +29,19 @@ def index_view(request):
                     elif numbers[idx] in secret_nums:
                         cows += 1
                     idx += 1
+                context['entered_numbers'] = numbers
                 context['bulls'] = bulls
                 context['cows'] = cows
+                global number_of_round, history
+                number_of_round += 1
+                i = f'round{number_of_round}'
+                history[i] = {'entered_numbers': numbers, 'bulls': bulls, 'cows': cows}
+                # history['round'] = number_of_round
+                # history['entered_numbers'] = numbers
+                # history['bulls'] = bulls
+                # history['cows'] = cows
+                print(history)
+
             return render(request, 'result.html', context)
         else:
             context = {"error": need_check}
@@ -45,3 +59,11 @@ def validation(nums):
         if nums[idx_2] not in range(1, 11):
             return "Digits are out of range 1 to 10"
         idx_2 += 1
+
+
+def show_history(request):
+    global history
+    context = {
+        'history': history
+    }
+    return render(request, 'history.html', context)
