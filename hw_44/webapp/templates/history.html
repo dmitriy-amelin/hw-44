@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+</head>
+<body>
+    <div>
+{#        {{ i }} {{ entered_numbers }} {{ bulls }} {{ cows }}#}
+{#        {{ context }}#}
+        {% for key, value in history.items %}
+        <p><strong>{{ key }}:</strong> {{ value }}</p>
+        {% endfor %}
+    </div>
+    <div><a href="/">Repeat</a> </div>
+</body>
+</html>

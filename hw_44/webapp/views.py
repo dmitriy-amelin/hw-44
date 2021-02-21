@@ -36,11 +36,6 @@ def index_view(request):
                 number_of_round += 1
                 i = f'round{number_of_round}'
                 history[i] = {'entered_numbers': numbers, 'bulls': bulls, 'cows': cows}
-                # history['round'] = number_of_round
-                # history['entered_numbers'] = numbers
-                # history['bulls'] = bulls
-                # history['cows'] = cows
-                print(history)
 
             return render(request, 'result.html', context)
         else:
