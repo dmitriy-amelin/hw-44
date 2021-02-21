@@ -14,9 +14,9 @@ def index_view(request):
             'number2': request.POST.get('number2'),
             'number3': request.POST.get('number3'),
             'number4': request.POST.get('number4'),
-
         }
         numbers = [context['number1'], context['number2'], context['number3'], context['number4']]
+        numbers = list(map(int, numbers))
         need_check = validation(numbers)
         if not need_check:
             if len(numbers) == len(secret_nums):
@@ -28,11 +28,10 @@ def index_view(request):
                     idx += 1
                 context['bulls'] = bulls
                 context['cows'] = cows
+            return render(request, 'result.html', context)
         else:
-            context["error"] = need_check
+            context = {"error": need_check}
             return render(request, 'errors.html', context)
-
-        return render(request, 'article_view.html', context)
 
 
 def validation(nums):
@@ -40,9 +39,9 @@ def validation(nums):
     set_nums = set(nums)
 
     if len(nums) != len(set_nums):
-        return '<div>Numbers should not be repeated</div>'
+        return "Numbers should not be repeated"
 
     while idx_2 < 4:
         if nums[idx_2] not in range(1, 11):
-            return '<div>Digits are out of range 1 to 10</div>'
+            return "Digits are out of range 1 to 10"
         idx_2 += 1
