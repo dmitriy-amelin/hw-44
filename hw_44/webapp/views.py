@@ -9,8 +9,19 @@ def index_view(request):
     if request.method == 'GET':
         return render(request, 'index.html')
     elif request.method == 'POST':
+        errors = {
+            'error1':
+        }
+
+        context = {
+            'number1': request.POST.get('number1'),
+            'number2': request.POST.get('number2'),
+            'number3': request.POST.get('number3'),
+            'number4': request.POST.get('number4'),
+
+        }
         try:
-            numbers = list(map(int, request.POST.get['numbers'][0].split(' ')))
+            numbers = [context['number1'], context['number2'], context['number3'], context['number4']]
             need_check = validation(numbers)
             if not need_check:
                 if len(numbers) == len(secret_nums):

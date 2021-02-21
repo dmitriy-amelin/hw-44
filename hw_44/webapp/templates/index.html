@@ -5,9 +5,25 @@
     <title>Bulls and Cows</title>
 </head>
 <body>
-    <p>Guess 4 numbers. Enter them separated with spaces:</p>
+    <p>Guess 4 numbers</p>
+    <p>Enter 4 numbers below out of range 1 to 10:</p>
     <form method="POST" action="/">
-        <input type="text" name="numbers"/>
+        {% csrf_token %}
+        <ul>
+            <li>
+                <input type="number" name="number1"/>
+            </li>
+            <li>
+                <input type="number" name="number2"/>
+            </li>
+            <li>
+                <input type="number" name="number3"/>
+            </li>
+            <li>
+                <input type="number" name="number4"/>
+            </li>
+        </ul>
+
         <input type="submit" value="Send"/>
     </form>
 </body>
